@@ -22,7 +22,7 @@
     <h2>Админ панель — добавить игру</h2>
     <input id="gameName" placeholder="Название игры"><br>
     <input id="gameImg" placeholder="Ссылка на картинку"><br>
-    <input id="gameLink" placeholder="Ссылка на скачивание"><br><br>
+    <input id="gameLink" placeholder="Ссылка на торрент или magnet"><br><br>
     <button onclick="addGame()">Добавить игру</button>
 </div>
 
@@ -60,7 +60,7 @@ function renderGames() {
             <div class="card">
                 <img src="${g.img}">
                 <div class="title">${g.name}</div>
-                <a class="download-btn" href="${g.link}">Скачать</a>
+                <a class="download-btn" href="${g.link}" target="_blank">Скачать</a>
             </div>
         `;
     });
@@ -75,9 +75,19 @@ function addGame() {
         link: document.getElementById("gameLink").value
     };
 
+    if(!g.name || !g.img || !g.link) {
+        alert("Заполните все поля!");
+        return;
+    }
+
     games.push(g);
     localStorage.setItem("games", JSON.stringify(games));
     renderGames();
+
+    // Очистка полей
+    document.getElementById("gameName").value = "";
+    document.getElementById("gameImg").value = "";
+    document.getElementById("gameLink").value = "";
 
     alert("Игра добавлена!");
 }
@@ -90,6 +100,7 @@ function openLogin() {
 function checkPass() {
     let pass = document.getElementById("adminPass").value;
 
+    // пароль можно поменять
     if (pass === "1234") {
         document.getElementById("adminPanel").style.display = "block";
         document.getElementById("loginWindow").style.display = "none";
