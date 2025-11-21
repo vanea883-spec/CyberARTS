@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    background: #1b2838;
+    font-family: Arial, sans-serif;
+    color: #c7d5e0;
+}
+header {
+    background: #171a21;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 15px #000;
+}
+header h1 {
+    color: #66c0f4;
+    margin: 0;
+}
+nav a {
+    margin-left: 20px;
+    color: #c7d5e0;
+    text-decoration: none;
+    font-size: 16px;
+}
+#banner {
+    width: 100%;
+    height: 320px;
+    background: url('https://wallpapercave.com/wp/wp4040886.jpg') center/cover;
+    box-shadow: 0 0 20px #000;
+}
+.content {
+    padding: 25px;
+    display: flex;
+}
+.sidebar {
+    width: 200px;
+    background: #171a21;
+    padding: 15px;
+    border-radius: 5px;
+    height: max-content;
+    box-shadow: 0 0 8px #000;
+}
+.sidebar a {
+    display: block;
+    color: #c7d5e0;
+    padding: 10px 0;
+    text-decoration: none;
+}
+.games {
+    flex: 1;
+    margin-left: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.card {
+    background: #2a475e;
+    border-radius: 5px;
+    padding: 10px;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #000;
+}
+.card:hover {
+    transform: scale(1.03);
+}
+.card img {
+    width: 100%;
+    border-radius: 5px;
+}
+.title {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #66c0f4;
+}
+.download-btn {
+    display: block;
+    background: #66c0f4;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+/* Панель входа */
+#loginWindow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#loginBox {
+    background: #171a21;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #000;
+    width: 300px;
+    text-align: center;
+}
+input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+.admin-btn {
+    cursor: pointer;
+    color: #66c0f4;
+    font-weight: bold;
+}
+
+/* Админ панель */
+#adminPanel {
+    display: none;
+    padding: 20px;
+    background: #171a21;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #000;
+}
+#adminPanel h2 {
+    color: #66c0f4;
+}
+#adminPanel input {
+    width: 350px;
+}
+#adminPanel button {
+    padding: 10px 20px;
+    border: none;
+    background: #66c0f4;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}

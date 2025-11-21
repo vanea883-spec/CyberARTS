@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberARTS Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>CyberARTS Store</h1>
+    <nav>
+        <a href="#" onclick="openLogin()">Админ</a>
+    </nav>
+</header>
+
+<div id="banner"></div>
+
+<!-- Панель добавления игр -->
+<div id="adminPanel">
+    <h2>Админ панель — добавить игру</h2>
+    <input id="gameName" placeholder="Название игры"><br>
+    <input id="gameImg" placeholder="Ссылка на картинку"><br>
+    <input id="gameLink" placeholder="Ссылка на скачивание"><br><br>
+    <button onclick="addGame()">Добавить игру</button>
+</div>
+
+<div class="content">
+    <div class="sidebar">
+        <h3>Категории</h3>
+        <a href="#">Экшен</a>
+        <a href="#">RPG</a>
+        <a href="#">Шутеры</a>
+        <a href="#">Приключения</a>
+        <a href="#">Все игры</a>
+    </div>
+
+    <div class="games" id="gameList"></div>
+</div>
+
+<!-- Окно логина -->
+<div id="loginWindow">
+    <div id="loginBox">
+        <h2>Вход</h2>
+        <input type="password" id="adminPass" placeholder="Пароль админа">
+        <button onclick="checkPass()">Войти</button>
+    </div>
+</div>
+
+<script>
+// ===== ЗАГРУЗКА ИГР =====
+let games = JSON.parse(localStorage.getItem("games")) || [];
+
+function renderGames() {
+    let list = document.getElementById("gameList");
+    list.innerHTML = "";
+    games.forEach(g => {
+        list.innerHTML += `
+            <div class="card">
+                <img src="${g.img}">
+                <div class="title">${g.name}</div>
+                <a class="download-btn" href="${g.link}">Скачать</a>
+            </div>
+        `;
+    });
+}
+renderGames();
+
+// ===== АДМИН ПАНЕЛЬ =====
+function addGame() {
+    let g = {
+        name: document.getElementById("gameName").value,
+        img: document.getElementById("gameImg").value,
+        link: document.getElementById("gameLink").value
+    };
+
+    games.push(g);
+    localStorage.setItem("games", JSON.stringify(games));
+    renderGames();
+
+    alert("Игра добавлена!");
+}
+
+// ===== ВХОД =====
+function openLogin() {
+    document.getElementById("loginWindow").style.display = "flex";
+}
+
+function checkPass() {
+    let pass = document.getElementById("adminPass").value;
+
+    if (pass === "1234") {
+        document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("loginWindow").style.display = "none";
+        alert("Добро пожаловать, админ!");
+    } else {
+        alert("Неверный пароль");
+    }
+}
+</script>
+
+</body>
+</html>
